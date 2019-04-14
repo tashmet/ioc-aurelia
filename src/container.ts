@@ -1,71 +1,24 @@
 import 'reflect-metadata';
-import {Container as AureliaContainer, inject} from 'aurelia-dependency-injection';
-import {Newable} from '@ziggurat/meta';
+import {Container as AureliaContainer} from 'aurelia-dependency-injection';
 import {
-  Container, ServiceIdentifier, RegistrationPropertyAnnotation
+  AbstractContainer, ServiceIdentifier, ServiceRequest, Resolver
 } from '@ziggurat/tiamat';
 
-export class AureliaAdapter implements Container {
+export class AureliaAdapter extends AbstractContainer {
   constructor(
     private container: AureliaContainer
-  ) {}
+  ) { super(); }
 
-  public get<T>(key: ServiceIdentifier<T>): T {
-    return this.container.get(key);
+  public get<T>(req: ServiceRequest<T>): T {
+    return req instanceof Resolver ? req.get(this) : this.container.get(req);
   }
 
-  public registerInstance<T>(key: ServiceIdentifier<T>, instance: T) {
+  public registerResolver<T>(key: ServiceIdentifier<T>, resolver: Resolver<T>) {
     this.container.unregister(key);
-    this.container.registerInstance(key, instance);
+    this.container.registerHandler(key, () => resolver.get(this));
   }
 
-  public registerSingletonFactory<T>(
-    key: ServiceIdentifier<T>, fn: (...args: any[]) => T, deps: ServiceIdentifier<any>[] = []
-  ) {
-    let _this = this;
-    this.container.unregister(key);
-    const {fact} = new class {
-      private instance: T;
-      public fact = () => {
-        if (!this.instance) {
-          this.instance = fn(...deps.map(dep => _this.get(dep)));
-        }
-        return this.instance;
-      }
-    };
-    this.container.registerHandler(key, fact);
-  }
-
-  public registerTransientFactory<T>(
-    key: ServiceIdentifier<T>, fn: (...args: any[]) => T, deps: ServiceIdentifier<any>[] = []
-  ) {
-    this.container.unregister(key);
-    this.container.registerHandler(key, () => fn(...deps.map(dep => this.get(dep))));
-  }
-
-  public registerSingleton<T>(
-    key: ServiceIdentifier<T>, ctr: Newable<T>, deps: ServiceIdentifier<any>[] = []
-  ) {
-    Reflect.decorate([inject(...deps)], ctr);
-    for (let providerAttr of RegistrationPropertyAnnotation.onClass(ctr, true)) {
-      providerAttr.register(this, key);
-    }
-    this.container.unregister(key);
-    this.container.registerSingleton(key, ctr);
-  }
-
-  public registerTransient<T>(
-    key: ServiceIdentifier<T>, ctr: Newable<T>, deps: ServiceIdentifier<any>[] = []
-  ) {
-    Reflect.decorate([inject(...deps)], ctr);
-    for (let providerAttr of RegistrationPropertyAnnotation.onClass(ctr, true)) {
-      providerAttr.register(this, key);
-    }
-    this.container.unregister(key);
-    this.container.registerTransient(key, ctr);
-  }
-
-  public isRegistered<T>(key: ServiceIdentifier<T>): boolean {
+  public isRegistered<T>(key: ServiceRequest<T>): boolean {
     return this.container.hasResolver(key);
   }
 }

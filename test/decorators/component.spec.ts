@@ -1,4 +1,4 @@
-import {bootstrap, bootstrapDone, component, provider, Container} from '@ziggurat/tiamat';
+import {bootstrap, component, provider} from '@ziggurat/tiamat';
 import {Container as AureliaContainer} from 'aurelia-dependency-injection';
 import {AureliaAdapter} from '../../src/container';
 import {expect} from 'chai';
@@ -54,29 +54,6 @@ describe('component', () => {
       return expect(
         (await bootstrap(new AureliaAdapter(new AureliaContainer()), TestComponent)).foo
       ).to.eql('bar');
-    });
-  });
-
-  describe('bootstrapDone', () => {
-    @component({
-      inject: ['tiamat.Container']
-    })
-    class TestComponent {
-      constructor(
-        public container: Container
-      ) {}
-    }
-
-    it('should be called when bootstrapping is done', (done) => {
-      bootstrap(new AureliaAdapter(new AureliaContainer), TestComponent, async (container) => {
-        bootstrapDone(container, () => done());
-      });
-    });
-
-    it('should be called if bootstrapping is already done', (done) => {
-      bootstrap(new AureliaAdapter(new AureliaContainer), TestComponent).then(c => {
-        bootstrapDone(c.container, () => done());
-      });
     });
   });
 });

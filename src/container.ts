@@ -1,8 +1,5 @@
-import 'reflect-metadata';
 import {Container as AureliaContainer} from 'aurelia-dependency-injection';
-import {
-  AbstractContainer, ServiceIdentifier, ServiceRequest, Resolver
-} from '@ziggurat/tiamat';
+import {AbstractContainer, ServiceIdentifier, ServiceRequest, Resolver} from '@ziggurat/tiamat';
 
 export class AureliaAdapter extends AbstractContainer {
   constructor(

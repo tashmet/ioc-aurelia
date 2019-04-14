@@ -1,6 +1,6 @@
 {
   "name": "@ziggurat/tiamat-aurelia",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Tiamat implementation built on Aurelia DI",
   "scripts": {
     "test": "mocha --opts mocha.opts"

@@ -1,5 +1,5 @@
 import {Container as AureliaContainer} from 'aurelia-dependency-injection';
-import {AbstractContainer, ServiceIdentifier, ServiceRequest, Resolver} from '@ziggurat/tiamat';
+import {AbstractContainer, ServiceIdentifier, ServiceRequest, Resolver} from '@ziqquratu/ioc';
 
 export class AureliaAdapter extends AbstractContainer {
   constructor(
@@ -7,7 +7,7 @@ export class AureliaAdapter extends AbstractContainer {
   ) { super(); }
 
   protected get<T>(req: ServiceIdentifier<T>): T {
-    return this.container.get(req);
+    return this.container.get(req as any);
   }
 
   public registerResolver<T>(key: ServiceIdentifier<T>, resolver: Resolver<T>) {

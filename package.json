@@ -1,7 +1,7 @@
 {
-  "name": "@ziggurat/tiamat-aurelia",
-  "version": "0.3.0",
-  "description": "Tiamat implementation built on Aurelia DI",
+  "name": "@ziqquratu/ioc-aurelia",
+  "version": "0.4.0",
+  "description": "Ziqquratu IoC container built on Aurelia DI",
   "scripts": {
     "test": "mocha --opts mocha.opts"
   },
@@ -12,9 +12,9 @@
   "devDependencies": {
     "@types/chai": "^4.0.0",
     "@types/mocha": "^2.2.41",
-    "@types/node": "^12.0.0",
-    "@ziggurat/tiamat": "^0.17.1",
-    "aurelia-dependency-injection": "^1.3.2",
+    "@types/node": "^13.1.8",
+    "@ziqquratu/ioc": "^0.9.6",
+    "aurelia-dependency-injection": "^1.5.2",
     "chai": "^4.0.2",
     "gulp": "^3.9.1",
     "gulp-tslint": "^8.1.1",
@@ -27,7 +27,7 @@
     "typescript": "^3.0.0"
   },
   "peerDependencies": {
-    "@ziggurat/tiamat": "^0.17.1",
-    "aurelia-dependency-injection": "^1.3.2"
+    "@ziqquratu/ioc": "^0.9.6",
+    "aurelia-dependency-injection": "^1.5.2"
   }
 }

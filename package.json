@@ -5,6 +5,7 @@
   "scripts": {
     "build": "tsc",
     "clean": "rimraf dist",
+    "lint": "eslint --cache --ext .js,.ts src/",
     "test": "mocha --opts mocha.opts"
   },
   "main": "dist/index.js",
@@ -20,14 +21,16 @@
     "@types/chai": "^4.0.0",
     "@types/mocha": "^2.2.41",
     "@types/node": "^13.1.8",
+    "@typescript-eslint/eslint-plugin": "^2.17.0",
+    "@typescript-eslint/parser": "^2.17.0",
     "@ziqquratu/ioc": "^0.9.6",
     "aurelia-dependency-injection": "^1.5.2",
     "chai": "^4.0.2",
+    "eslint": "^6.8.0",
     "harmonize": "^2.0.0",
     "mocha": "^3.4.2",
     "rimraf": "^3.0.0",
     "ts-node": "^3.0.6",
-    "tslint": "^5.7.0",
     "typescript": "^3.0.0"
   },
   "peerDependencies": {

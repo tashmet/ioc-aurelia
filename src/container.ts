@@ -10,7 +10,7 @@ export class AureliaAdapter extends AbstractContainer {
     return this.container.get(req as any);
   }
 
-  public registerResolver<T>(key: ServiceIdentifier<T>, resolver: Resolver<T>) {
+  public registerResolver<T>(key: ServiceIdentifier<T>, resolver: Resolver<T>): void {
     this.container.unregister(key);
     this.container.registerHandler(key, () => resolver.resolve(this));
   }

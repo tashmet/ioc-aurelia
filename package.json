@@ -3,8 +3,9 @@
   "version": "0.4.2",
   "description": "Ziqquratu IoC container built on Aurelia DI",
   "scripts": {
-    "build": "tsc",
     "clean": "rimraf dist",
+    "commit": "git-cz",
+    "build": "tsc",
     "lint": "eslint --cache --ext .js,.ts src/",
     "test": "mocha --opts mocha.opts"
   },
@@ -26,6 +27,8 @@
     "@ziqquratu/ioc": "^0.9.6",
     "aurelia-dependency-injection": "^1.5.2",
     "chai": "^4.0.2",
+    "commitizen": "^4.0.3",
+    "cz-conventional-changelog": "^3.0.2",
     "eslint": "^6.8.0",
     "harmonize": "^2.0.0",
     "mocha": "^3.4.2",
@@ -36,5 +39,10 @@
   "peerDependencies": {
     "@ziqquratu/ioc": "^0.9.6",
     "aurelia-dependency-injection": "^1.5.2"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
   }
 }

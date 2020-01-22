@@ -1,6 +1,6 @@
 {
   "name": "@ziqquratu/ioc-aurelia",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "description": "Ziqquratu IoC container built on Aurelia DI",
   "scripts": {
     "build": "tsc",
@@ -11,6 +11,11 @@
   "types": "dts/index.d.ts",
   "author": "Björn Andersson",
   "license": "MIT",
+  "files": [
+    "dist",
+    "src",
+    "LICENSE"
+  ],
   "devDependencies": {
     "@types/chai": "^4.0.0",
     "@types/mocha": "^2.2.41",

@@ -1,8 +1,0 @@
-*.swp
-*.tgz
-node_modules
-src
-test
-mocha.opts
-tsconfig.json
-tslint.json

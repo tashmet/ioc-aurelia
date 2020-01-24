@@ -1,10 +1,11 @@
 import {Container as AureliaContainer} from 'aurelia-dependency-injection';
-import {AbstractContainer, ServiceIdentifier, ServiceRequest, Resolver} from '@ziqquratu/ioc';
+import {AbstractContainer, Logger, ServiceIdentifier, ServiceRequest, Resolver} from '@ziqquratu/core';
 
 export class AureliaAdapter extends AbstractContainer {
   constructor(
-    private container: AureliaContainer
-  ) { super(); }
+    private container: AureliaContainer,
+    logger: Logger,
+  ) { super(logger.inScope('AureliaAdapter')); }
 
   protected get<T>(req: ServiceIdentifier<T>): T {
     return this.container.get(req as any);

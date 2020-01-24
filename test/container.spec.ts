@@ -1,11 +1,21 @@
-import {Provider} from '@ziqquratu/ioc';
+import {Logger, Provider} from '@ziqquratu/core';
 import {Container as AureliaContainer} from 'aurelia-dependency-injection';
 import {AureliaAdapter} from '../src/container';
 import {expect} from 'chai';
 import 'mocha';
 
+class MockLogger implements Logger {
+  public parent = null;
+  public scope = [];
+  public info() { return; }
+  public warn() { return; }
+  public debug() { return; }
+  public error() { return; }
+  public inScope(scope: string) { return new MockLogger(); }
+}
+
 describe('AureliaAdapter', () => {
-  let container = new AureliaAdapter(new AureliaContainer());
+  let container = new AureliaAdapter(new AureliaContainer(), new MockLogger());
 
   describe('constant value definition', () => {
     it('should store and retrieve a constant value', () => {

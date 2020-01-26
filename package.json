@@ -13,6 +13,13 @@
   "types": "dist/index.d.ts",
   "author": "Björn Andersson",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ziqquratu/ioc-aurelia"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
   "files": [
     "dist",
     "src",
